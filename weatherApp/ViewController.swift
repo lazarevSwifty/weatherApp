@@ -31,7 +31,7 @@ extension ViewController: UISearchBarDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
         
-        checkSearchBar()
+        fetchDataWithAlamofire()
     }
     
     //Проверка вводимой строки на пустоту
@@ -41,7 +41,7 @@ extension ViewController: UISearchBarDelegate {
         } else {
             guard let city = searchBar.text else { return }
             weatherUrl = key + city
-            fetchData()
+            fetchDataWithAlamofire()
         }
     }
     
@@ -52,7 +52,7 @@ extension ViewController: UISearchBarDelegate {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    // получение json с помощью URLSESSION
+    // parsing with URLsession
     func fetchData() {
         guard let url = URL(string: weatherUrl) else { return }
         
@@ -78,6 +78,7 @@ extension ViewController: UISearchBarDelegate {
 
     }
     
+    //parsing with alamofire
     func fetchDataWithAlamofire() {
         guard let url = URL(string: weatherUrl) else { return }
         
@@ -85,13 +86,14 @@ extension ViewController: UISearchBarDelegate {
             
             switch dataResponse.result {
             case .success(let value):
-                let weather = Weather.gerWeather(from: value)
+                let weather = Weather.getWeather(from: value)
                 DispatchQueue.main.async {
-                    self.tempretureLabel.text = String(weather.current.temp_c) + "°C"
-                    self.cityLabel.text = weather.location.name
-                    let imageStr = weather.current.condition.icon
+                    guard let temp = weather.current?.temp_c else { return }
+                    self.tempretureLabel.text = "\(temp)°C"
+                    self.cityLabel.text = weather.location?.name
+                    guard let imageStr = weather.current?.condition?.icon else {return}
                     self.imageView.dowlandImage(from: imageStr)
-                    self.conditionLabel.text = weather.current.condition.text
+                    self.conditionLabel.text = weather.current?.condition?.text
                 }
             case .failure(let error):
                 print(error)
