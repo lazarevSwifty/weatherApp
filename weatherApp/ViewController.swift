@@ -63,11 +63,12 @@ extension ViewController: UISearchBarDelegate {
                 let weather = try JSONDecoder().decode(Weather.self, from: data)
                 
                     DispatchQueue.main.async {
-                        self.tempretureLabel.text = String(weather.current.temp_c) + "°C"
-                        self.cityLabel.text = weather.location.name
-                        let imageStr = weather.current.condition.icon
+                        guard let temp = weather.current?.temp_c else { return }
+                        self.tempretureLabel.text = "\(temp)°C"
+                        self.cityLabel.text = weather.location?.name
+                        guard let imageStr = weather.current?.condition?.icon else {return}
                         self.imageView.dowlandImage(from: imageStr)
-                        self.conditionLabel.text = weather.current.condition.text
+                        self.conditionLabel.text = weather.current?.condition?.text
                     }
                 
             } catch let error {
