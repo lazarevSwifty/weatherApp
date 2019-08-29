@@ -31,7 +31,14 @@ extension ViewController: UISearchBarDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
         
-        fetchDataWithAlamofire()
+        NetworkingManager.fetchData(url: weatherUrl) { weather in
+            guard let temp = weather.current?.temp_c else { return }
+            self.tempretureLabel.text = "\(temp)°C"
+            self.cityLabel.text = weather.location?.name
+            guard let imageStr = weather.current?.condition?.icon else {return}
+            self.imageView.dowlandImage(from: imageStr)
+            self.conditionLabel.text = weather.current?.condition?.text
+        }
     }
     
     //Проверка вводимой строки на пустоту
@@ -41,7 +48,14 @@ extension ViewController: UISearchBarDelegate {
         } else {
             guard let city = searchBar.text else { return }
             weatherUrl = key + city
-            fetchDataWithAlamofire()
+            NetworkingManager.fetchData(url: weatherUrl) { weather in
+                guard let temp = weather.current?.temp_c else { return }
+                self.tempretureLabel.text = "\(temp)°C"
+                self.cityLabel.text = weather.location?.name
+                guard let imageStr = weather.current?.condition?.icon else {return}
+                self.imageView.dowlandImage(from: imageStr)
+                self.conditionLabel.text = weather.current?.condition?.text
+            }
         }
     }
     

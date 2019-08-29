@@ -14,6 +14,7 @@
 		E049D609230F2A7B00C9B5C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E049D607230F2A7B00C9B5C3 /* LaunchScreen.storyboard */; };
 		E049D611230F2E8400C9B5C3 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E049D610230F2E8400C9B5C3 /* Model.swift */; };
 		E049D61323168E5400C9B5C3 /* UIImageView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E049D61223168E5400C9B5C3 /* UIImageView + Extension.swift */; };
+		E049D61923172ED200C9B5C3 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E049D61823172ED200C9B5C3 /* NetworkingManager.swift */; };
 		ED3BC5778DF0C9D90AA6DB26 /* Pods_weatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 661B65F24623256C32308892 /* Pods_weatherApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		E049D60A230F2A7B00C9B5C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E049D610230F2E8400C9B5C3 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		E049D61223168E5400C9B5C3 /* UIImageView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extension.swift"; sourceTree = "<group>"; };
+		E049D61823172ED200C9B5C3 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,16 +84,57 @@
 		E049D5FD230F2A7900C9B5C3 /* weatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				E049D5FE230F2A7900C9B5C3 /* AppDelegate.swift */,
-				E049D600230F2A7900C9B5C3 /* ViewController.swift */,
-				E049D61223168E5400C9B5C3 /* UIImageView + Extension.swift */,
-				E049D610230F2E8400C9B5C3 /* Model.swift */,
-				E049D602230F2A7900C9B5C3 /* Main.storyboard */,
-				E049D605230F2A7B00C9B5C3 /* Assets.xcassets */,
-				E049D607230F2A7B00C9B5C3 /* LaunchScreen.storyboard */,
-				E049D60A230F2A7B00C9B5C3 /* Info.plist */,
+				E049D61423172DD700C9B5C3 /* View */,
+				E049D61523172DEF00C9B5C3 /* Model */,
+				E049D61A23172EDB00C9B5C3 /* Helpers */,
+				E049D61723172E6D00C9B5C3 /* IB */,
+				E049D61623172E2C00C9B5C3 /* Support Files */,
 			);
 			path = weatherApp;
+			sourceTree = "<group>";
+		};
+		E049D61423172DD700C9B5C3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E049D600230F2A7900C9B5C3 /* ViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E049D61523172DEF00C9B5C3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E049D610230F2E8400C9B5C3 /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E049D61623172E2C00C9B5C3 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E049D5FE230F2A7900C9B5C3 /* AppDelegate.swift */,
+				E049D60A230F2A7B00C9B5C3 /* Info.plist */,
+				E049D605230F2A7B00C9B5C3 /* Assets.xcassets */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		E049D61723172E6D00C9B5C3 /* IB */ = {
+			isa = PBXGroup;
+			children = (
+				E049D607230F2A7B00C9B5C3 /* LaunchScreen.storyboard */,
+				E049D602230F2A7900C9B5C3 /* Main.storyboard */,
+			);
+			path = IB;
+			sourceTree = "<group>";
+		};
+		E049D61A23172EDB00C9B5C3 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E049D61823172ED200C9B5C3 /* NetworkingManager.swift */,
+				E049D61223168E5400C9B5C3 /* UIImageView + Extension.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,6 +255,7 @@
 				E049D61323168E5400C9B5C3 /* UIImageView + Extension.swift in Sources */,
 				E049D611230F2E8400C9B5C3 /* Model.swift in Sources */,
 				E049D601230F2A7900C9B5C3 /* ViewController.swift in Sources */,
+				E049D61923172ED200C9B5C3 /* NetworkingManager.swift in Sources */,
 				E049D5FF230F2A7900C9B5C3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,7 +404,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = weatherApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/weatherApp/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -378,7 +422,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = weatherApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/weatherApp/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
